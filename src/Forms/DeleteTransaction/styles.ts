@@ -15,12 +15,9 @@ export const Info = styled.p`
 
 export const FormContainer = styled.div`
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
     grid-template-areas:
-    "description"
-    "transaction"
-    "value"
-    "dueDate";
+    "description";
   gap: 16px;
   margin-top: 20px;
 `;

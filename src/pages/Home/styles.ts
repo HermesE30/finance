@@ -35,13 +35,21 @@ export const CardsContainer = styled.div`
   width: 100%; 
   display: flex;
   justify-content: center;
-  transform: translateY(70%);
-  gap: 24px;
+  gap: 12px;
+  transform: translateY(-50%);
+  flex-wrap: wrap;
+  transition: all 0.5s ease-in-out;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 940px) {
+    transition: all 0.5s ease-in-out;
+    transform: translateY(-15%);
+  }
+
+  @media (max-width: 520px) {
+    transition: all 0.5s ease-in-out;
     align-items: center;
     flex-direction: column;
-    transform: translateY(0);
+    transform: translateY(-15%);
   }
 `;
 
@@ -51,7 +59,6 @@ export const Content = styled.div`
   
   @media (min-width: 1000px) {
     padding: 0;
-    margin-top: 90px;
     max-width: 960px;
   }
 `;

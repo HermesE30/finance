@@ -69,7 +69,7 @@ export default function Modal({
               <FooterContent>
                 <ContentInnerFooter>
                   <ButtonBase
-                    label={'Canceler'}
+                    label={'Cancelar'}
                     kind={'outline'}
                     onClick={() => handleClick()}
                   />

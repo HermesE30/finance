@@ -13,6 +13,9 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   position: relative;
   padding: 0px 1.25rem 1.25rem 1.25rem;
   background: var(--white);
@@ -36,10 +39,14 @@ export const ContentBody = styled.div`
 `;
 
 export const HeaderContent = styled.div`
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: end;
   margin-top: 0.625rem;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const FooterContent = styled.div`
