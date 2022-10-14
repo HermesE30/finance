@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './pages/Home';
+import App from './App';
 import GlobalStyles from './styles/globalStyles';
 
 // retrieve root container element

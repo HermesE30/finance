@@ -4,8 +4,10 @@ import Input from './Input';
 import Table from './Table';
 import RadioButton from './Radio';
 import ButtonFloating from './ButtonFloating';
+import Loading from './Loading';
 
 export {
+  Loading,
   ButtonBase,
   Input,
   Card,
