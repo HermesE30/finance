@@ -2,7 +2,7 @@ import Cookies from 'universal-cookie';
 import { environment } from '../environments';
 
 // import product name
-const cookieKey = `${environment.projectId}-stoken`;
+const cookieKey = `${environment.appName}-stoken`;
 
 // get cookie by name
 export function getToken() {
@@ -17,5 +17,5 @@ export function removeCookie() {
 
 export function setCookie(tkn: string) {
   const cookies = new Cookies();
-  return cookies.set(cookieKey, tkn, { domain: environment.redirect });
+  return cookies.set(cookieKey, tkn);
 }
