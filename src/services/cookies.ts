@@ -17,5 +17,5 @@ export function removeCookie() {
 
 export function setCookie(tkn: string) {
   const cookies = new Cookies();
-  return cookies.set(cookieKey, tkn);
+  return cookies.set(cookieKey, tkn, { domain: environment.redirect });
 }
