@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
 import { useCallback, useEffect, useState } from 'react';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../Components';
 import { DeleteTransaction, NewTransactionForm } from '../../Forms';
 import { TransactionData } from '../../Interface';
+import { RevenuesServices } from '../../services';
 import { getStorage, setStorage } from '../../utils/localStorage';
 import handleNotify from '../../utils/notify';
 import { ModalScreen } from '../../widgets';
@@ -39,22 +41,27 @@ export default function Home() {
     return (total);
   }
 
-  const refresh = useCallback((dat: TransactionData[]) => {
-    // get values by kind
-    const rev = handleValues(dat, 'revenue');
-    const exp = handleValues(dat, 'expense');
+  const refresh = useCallback(() => {
+    const revenue = new RevenuesServices();
+    revenue.listAll().then((data) => {
+      // get values by kind
+      const rev = handleValues(data, 'revenue');
+      const exp = handleValues(data, 'expense');
+      // set cards values
+      setTData(data);
+      setRevenues(rev);
+      setExpenses(exp);
+      setBalance(rev - exp);
 
-    // set cards values
-    setTData(dat);
-    setRevenues(rev);
-    setExpenses(exp);
-    setBalance(rev - exp);
-  }, [tData]);
+      handleNotify('success', 'Transação adicionada com sucesso!');
+    }).catch(() => {
+      handleNotify('error', 'Erro ao criar transação!');
+    }).finally(() => setIsVisible(false));
+  }, []);
 
   useEffect(() => {
-    const dataStorage: TransactionData[] = getStorage();
-    refresh(dataStorage);
-  }, []);
+    refresh();
+  }, [refresh]);
 
   // handle modal state
   function handleShowModal(childrenName: ModalChildrenTypes, data?: any) {
@@ -64,24 +71,15 @@ export default function Home() {
   }
 
   function handleSubmit(data: TransactionData) {
-    setIsVisible(false);
-    setTData((prev: TransactionData[]) => {
-      const dat = [...prev];
-      dat.push(data);
-      setStorage(dat);
-      refresh(dat);
-      return dat;
-    });
-    handleNotify('success', 'Transação adicionada com sucesso!');
+    const revenue = new RevenuesServices();
+    revenue.create(data).then(() => {
+      handleNotify('success', 'Transação adicionada com sucesso!');
+    }).catch(() => {
+      handleNotify('error', 'Erro ao criar transação!');
+    }).finally(() => { refresh(); setIsVisible(false); });
   }
 
   function handleDeleteItem(id: string) {
-    setTData((prev: TransactionData[]) => {
-      const dat = prev.filter((item) => item.id !== id);
-      setStorage(dat);
-      refresh(dat);
-      return dat;
-    });
     setIsVisible(false);
     handleNotify('success', 'Item removido com sucesso!');
   }
