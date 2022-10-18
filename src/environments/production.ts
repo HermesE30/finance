@@ -1,7 +1,7 @@
 // environment to production
 export const environment = {
   appName: 'hrms-finance',
-  redirect: 'https://hrms-login-app.herokuapp.com',
+  redirect: 'https://hermesemmanuel.com.br/',
   apiKey: 'AIzaSyBZ_SVl8SUGCrVFlAAm1dJ_VxFMFLgAF5U',
   authDomain: 'hrms-access.firebaseapp.com',
   projectId: 'hrms-access',
