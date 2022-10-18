@@ -1,8 +1,7 @@
 import Cookies from 'universal-cookie';
-import { environment } from '../environments';
 
 // import product name
-const cookieKey = `${environment.appName}-stoken`;
+const cookieKey = 'stoken';
 
 // get cookie by name
 export function getToken() {
